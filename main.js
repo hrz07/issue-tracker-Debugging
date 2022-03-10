@@ -23,7 +23,7 @@ function submitIssue(e) {
 
 const closeIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const currentIssue = issues.find(issue => issue.id === id);
+  const currentIssue = issues.find(issue => issue.id === id.toString());
   currentIssue.status = 'Closed';
   localStorage.setItem('issues', JSON.stringify(issues));
   fetchIssues();
@@ -31,8 +31,9 @@ const closeIssue = id => {
 
 const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const remainingIssues = issues.filter( issue.id !== id )
+  const remainingIssues = issues.filter((issue) => issue.id !== id.toString() )
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
+  fetchIssues();
 }
 
 const fetchIssues = () => {
